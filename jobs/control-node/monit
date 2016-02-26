@@ -1,4 +1,4 @@
-check process web_ui
+check process control-node
   with pidfile /var/vcap/sys/run/control-node/pid
   start program "/var/vcap/jobs/control-node/bin/ctl start"
   stop program "/var/vcap/jobs/control-node/bin/ctl stop"
