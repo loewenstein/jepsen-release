@@ -1,8 +1,0 @@
----
-name: leiningen_2.6.0
-
-dependencies:
-  - java
-
-files:
-  - leiningen/leiningen-2.6.0-standalone.zip # from https://github.com/technomancy/leiningen/releases/download/2.6.0/leiningen-2.6.0-standalone.zip

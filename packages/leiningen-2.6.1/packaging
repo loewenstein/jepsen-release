@@ -1,5 +1,5 @@
 # abort script on any command that exits with a non zero value
 set -e -x
 
-tar xfv leiningen/leiningen-2.6.0-standalone.zip
+unzip leiningen/leiningen-2.6.1-standalone.zip -d .
 cp -a ./* $BOSH_INSTALL_TARGET

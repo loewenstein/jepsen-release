@@ -2,7 +2,7 @@
 name: jepsen
 
 dependencies:
-  - leiningen_2.6.0
+  - leiningen-2.6.1
 
 files:
   - jepsen/**/*
