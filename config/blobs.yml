@@ -1,1 +1,9 @@
---- {}
+---
+java/openjdk-trusty-1.8.0_65.tar.gz:
+  object_id: 11379379-4898-4567-9564-0cf58f85605b
+  sha: 949812223e334ba6c360a097a44084776eaee418
+  size: 77611856
+leiningen/leiningen-2.6.1-standalone.zip:
+  object_id: a8ac0477-30f3-4d6c-9047-b341c11c6aa2
+  sha: 2f6b6a451698f15a22f94559628419fd9e8646d6
+  size: 15343271
