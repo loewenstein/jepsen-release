@@ -1,0 +1,7 @@
+---
+name: java-1.8.0
+
+dependencies: []
+
+files:
+  - java/openjdk-trusty-1.8.0_65.tar.gz
