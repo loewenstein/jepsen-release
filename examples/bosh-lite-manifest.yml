@@ -1,0 +1,79 @@
+name: jepsen
+director_uuid: 44586d7c-bcce-4f5f-ae80-42bb8a1ed08b
+
+releases:
+- name: jepsen
+  version: latest
+
+compilation:
+  workers: 2
+  network: default
+  reuse_compilation_vms: true
+  cloud_properties:
+    name: random
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-240000
+  update_watch_time: 30000-600000
+  max_in_flight: 3
+
+resource_pools:
+- name: common-resource-pool
+  network: default
+  size: 3
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+  cloud_properties:
+    name: random
+
+disk_pools:
+- name: disks
+  disk_size: 10_000
+
+networks:
+- name: default
+  subnets:
+  - range: 10.244.3.0/30
+    reserved:
+    - 10.244.3.1
+    static:
+    - 10.244.3.2
+    cloud_properties:
+      name: random
+  - range: 10.244.3.4/30
+    reserved:
+    - 10.244.3.5
+    static:
+    - 10.244.3.6
+    cloud_properties:
+      name: random
+  - range: 10.244.3.8/30
+    reserved:
+    - 10.244.3.9
+    static:
+    - 10.244.3.10
+    cloud_properties:
+      name: random
+
+jobs:
+- name: control-node
+  instances: 1
+  templates:
+    - {name: control-node, release: jepsen}
+  resource_pool: common-resource-pool
+  persistent_disk_pool: disks
+  networks:
+    - name: default
+      static_ips:
+        - 10.244.3.2
+
+- name: db-node
+  instances: 1
+  templates:
+    - {name: db-node, release: jepsen}
+  resource_pool: common-resource-pool
+  networks:
+    - name: default
+      static_ips:
