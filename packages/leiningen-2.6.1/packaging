@@ -1,5 +1,8 @@
 # abort script on any command that exits with a non zero value
 set -e -x
 
-unzip leiningen/leiningen-2.6.1-standalone.zip -d .
-cp -a ./* $BOSH_INSTALL_TARGET
+cp leiningen/leiningen-2.6.1-standalone.zip $BOSH_INSTALL_TARGET/leiningen-2.6.1-standalone.jar
+
+mkdir $BOSH_INSTALL_TARGET/bin
+cp leiningen/lein.sh $BOSH_INSTALL_TARGET/bin
+chmod +x $BOSH_INSTALL_TARGET/bin

@@ -6,3 +6,4 @@ dependencies:
 
 files:
   - leiningen/leiningen-2.6.1-standalone.zip # from https://github.com/technomancy/leiningen/releases/download/2.6.1/leiningen-2.6.1-standalone.zip
+  - leiningen/lein.sh # https://raw.githubusercontent.com/technomancy/leiningen/master/bin/lein-pkg
