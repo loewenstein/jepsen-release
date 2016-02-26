@@ -45,7 +45,7 @@ LEIN_JVM_OPTS="${LEIN_JVM_OPTS:-'-Xms64m -Xmx512m'}"
 # If you're not using an uberjar you'll need to list each dependency
 # and add them individually to the classpath/bootclasspath as well.
 
-LEIN_JAR=/usr/share/java/leiningen-$LEIN_VERSION-standalone.jar
+LEIN_JAR=/var/vcap/packages/leiningen-$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.jar
 
 # Do not use installed leiningen jar during self-compilation
 if ! { [ "$1" = "compile" ] &&
@@ -97,7 +97,7 @@ if ([ "$LEIN_FAST_TRAMPOLINE" != "" ] || [ -r .lein-fast-trampoline ]) &&
     # Just don't change :target-path in project.clj, mkay?
     TRAMPOLINE_FILE="target/trampolines/$INPUT_CHECKSUM"
 else
-    TRAMPOLINE_FILE="/tmp/lein-trampoline-$$"
+    TRAMPOLINE_FILE="/var/vcap/data/tmp/lein-trampoline-$$"
     trap "rm -f $TRAMPOLINE_FILE" EXIT
 fi
 
