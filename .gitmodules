@@ -1,0 +1,6 @@
+[submodule "packages/java"]
+	path = packages/java
+	url = https://github.com/hybris/java-boshpackage
+[submodule "src/jepsen"]
+	path = src/jepsen
+	url = https://github.com/loewenstein/jepsen

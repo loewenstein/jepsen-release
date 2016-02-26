@@ -1,0 +1,6 @@
+---
+name: db-node
+templates:
+  ctl.erb: bin/ctl
+
+packages: []

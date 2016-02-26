@@ -1,0 +1,8 @@
+---
+name: jepsen
+
+dependencies:
+  - leiningen_2.6.0
+
+files:
+  - jepsen/**/*

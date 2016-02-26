@@ -1,0 +1,32 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/control-node
+LOG_DIR=/var/vcap/sys/log/control-node
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+
+start)
+mkdir -p $RUN_DIR $LOG_DIR
+chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+echo $$ > $PIDFILE
+
+while true
+do
+  echo "Press [CTRL+C] to stop.."
+  sleep 1
+done
+
+;;
+
+stop)
+kill -9 `cat $PIDFILE`
+rm -f $PIDFILE
+
+;;
+
+*)
+echo "Usage: ctl {start|stop}" ;;
+
+esac

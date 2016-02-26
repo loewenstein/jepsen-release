@@ -1,0 +1,5 @@
+check process web_ui
+  with pidfile /var/vcap/sys/run/db-node/pid
+  start program "/var/vcap/jobs/db-node/bin/ctl start"
+  stop program "/var/vcap/jobs/db-node/bin/ctl stop"
+  group vcap
