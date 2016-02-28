@@ -11,6 +11,13 @@ $ sudo su -
 $ vim /etc/hosts
 # enter mappings for the 5 db hosts to symbolic names 'n1' to 'n5'
 $ ssh-keyscan -t rsa n{1,5} >> /home/vcap/.ssh/known_hosts
+# put private key into /home/vcap/.ssh/id_rsa, chmod 600
+```
+
+```bash
+$ bosh ssh control-node 0
+$ sudo su -
+# put public key into /home/vcap/.ssh/authorized_keys, chmod 600, chmod dir 750
 ```
 
 ## Current test flow
