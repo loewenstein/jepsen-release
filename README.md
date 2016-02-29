@@ -15,7 +15,7 @@ $ ssh-keyscan -t rsa n{1,5} >> /home/vcap/.ssh/known_hosts
 ```
 
 ```bash
-$ bosh ssh control-node 0
+$ bosh ssh db-node 0
 $ sudo su -
 # put public key into /home/vcap/.ssh/authorized_keys, chmod 600, chmod dir 750
 ```
