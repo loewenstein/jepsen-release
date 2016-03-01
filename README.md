@@ -8,15 +8,9 @@ This is a Bosh release for [Jepsen](jepsen.io), the distributed system test libr
 ```bash
 $ bosh ssh control-node 0
 $ sudo su -
-$ vim /etc/hosts
-# enter mappings for the 5 db hosts to symbolic names 'n1' to 'n5'
-$ ssh-keyscan -t rsa n{1,5} >> /home/vcap/.ssh/known_hosts
+$ ssh-keyscan -t rsa n{1,5} >> /home/vcap/.ssh/known_hosts # post-deploy doesn't work yet
 # put private key into /home/vcap/.ssh/id_rsa, chmod 600
-```
-
-```bash
-$ bosh ssh db-node {0,4}
-$ sudo su -
+ssh-copy-id n1 -i
 # put public key into /home/vcap/.ssh/authorized_keys, chmod 600, chmod dir 750
 ```
 
