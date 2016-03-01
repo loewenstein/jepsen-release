@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ! -f /var/vcap/data/tmp/host_aliases_done ]; then
+echo "Adding aliases to /etc/hosts for node n1 to n5"
+<% p('db_nodes', []).each_with_index do |node_ip,index| %>
+echo "<%= node_ip %> n<%= index %>" >> /etc/hosts
+<% end %>
+touch /var/vcap/data/tmp/host_aliases_done
+else
+echo "Aliases already set, skipping editing /etc/hosts"
+fi

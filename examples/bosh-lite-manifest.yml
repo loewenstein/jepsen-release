@@ -24,8 +24,6 @@ resource_pools:
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
-  cloud_properties:
-    name: random
 
 disk_pools:
 - name: disks
@@ -36,11 +34,14 @@ networks:
   type: manual
   subnets:
   - range: 10.244.0.0/24
+    reserved: [10.244.0.1]
     static:
     - 10.244.0.2
     - 10.244.0.3
-    cloud_properties:
-      name: random
+    - 10.244.0.4
+    - 10.244.0.5
+    - 10.244.0.6
+    - 10.244.0.7
 
 jobs:
 - name: control-node
@@ -55,7 +56,7 @@ jobs:
         - 10.244.0.2
 
 - name: db-node
-  instances: 1
+  instances: 5
   templates:
     - {name: db-node, release: jepsen}
   resource_pool: common-resource-pool
@@ -63,3 +64,15 @@ jobs:
     - name: default
       static_ips:
         - 10.244.0.3
+        - 10.244.0.4
+        - 10.244.0.5
+        - 10.244.0.6
+        - 10.244.0.7
+properties:
+  db_nodes:
+    - 10.244.0.3
+    - 10.244.0.4
+    - 10.244.0.5
+    - 10.244.0.6
+    - 10.244.0.7
+    - bla

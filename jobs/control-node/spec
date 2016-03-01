@@ -2,6 +2,7 @@
 name: control-node
 templates:
   ctl.erb: bin/ctl
+  pre-start.erb: bin/pre-start
 
 packages:
   - java-1.8.0
