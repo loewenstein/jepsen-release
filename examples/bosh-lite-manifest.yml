@@ -6,7 +6,7 @@ releases:
   version: latest
 
 compilation:
-  workers: 2
+  workers: 3
   network: default
   reuse_compilation_vms: true
   cloud_properties:
@@ -14,9 +14,9 @@ compilation:
 
 update:
   canaries: 1
-  canary_watch_time: 30000-240000
-  update_watch_time: 30000-600000
-  max_in_flight: 3
+  canary_watch_time: 1000-240000
+  update_watch_time: 1000-600000
+  max_in_flight: 5
 
 resource_pools:
 - name: common-resource-pool
@@ -44,17 +44,6 @@ networks:
     - 10.244.0.7
 
 jobs:
-- name: control-node
-  instances: 1
-  templates:
-    - {name: control-node, release: jepsen}
-  resource_pool: common-resource-pool
-  persistent_disk_pool: disks
-  networks:
-    - name: default
-      static_ips:
-        - 10.244.0.2
-
 - name: db-node
   instances: 5
   templates:
@@ -68,6 +57,17 @@ jobs:
         - 10.244.0.5
         - 10.244.0.6
         - 10.244.0.7
+- name: control-node
+  instances: 1
+  templates:
+    - {name: control-node, release: jepsen}
+  resource_pool: common-resource-pool
+  persistent_disk_pool: disks
+  networks:
+    - name: default
+      static_ips:
+        - 10.244.0.2
+
 properties:
   db_nodes:
     - 10.244.0.3
@@ -75,4 +75,56 @@ properties:
     - 10.244.0.5
     - 10.244.0.6
     - 10.244.0.7
-    - bla
+  public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDE47pnRDUS6aSz96iKiNWmx+NGb3T07GcFof8bb7Uot0LHsJKaWg0uEpqUiFKb9dc61eFgvFiu/XlvIDfWdHf4A6gtg29LlBZ2NUKoNySqT09cbGqP75zaQ3CoOhqSCfTLZAkzpvQVP2yHOuwgCTpeWs5JqkgK47Qq+O3e/tlR/BP5yeTaOiV+MRDhaKHX0IP0e5iukWxYpbdgzT9eZ1RXx55yDo+Ly8yvHMwm1GM2AhFqiNobx7HGvAA+bsmF/Qfaa1/5v+DHe0GVDySl0BQJN+Ad/vZZ5c8+RMb0NVwq8yNVU3k+f6Cl3OIpwG3tmZdX/qdrAg0pu+3ZAg59Vste20rZ36n9kSKSdbFvezAW1SjLWm0oqoEmF/H1U2XSOehryEEXMlHNpbiJCFVFkypu//ZlvcKe7xBs8KJsX/+Rm1NPfIl/1yGcaaIzrfMeVHZDQvp4caftMXSycMfbxb++BztaTRBLPvJ00Ci4xUb/Zas84lvie6Nixmcj6/6iauFuRWEIQGLl+j1qKYe43bYE68V7TmPAuEEIZN+VrCU4iJchQ7RX4Vf0y3mIRWax8GFW8T9C9wHG3euBwRBWwpQ7lK9XAtlOJQ19QmbE5EyvuC1HUawR8s/uQI+FxDHnLKwifvQ+syEgRNVRkubMSwk6+Eo/SbceJRsJQf4fMESrqQ== just for jepsen testing"
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    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
+    -----END RSA PRIVATE KEY-----

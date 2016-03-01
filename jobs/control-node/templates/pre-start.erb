@@ -1,11 +1,22 @@
 #!/bin/bash
 
+echo "Setting mode 600 for private keyfile at /var/vcap/jobs/control-node/config/id_rsa"
+chmod 600 /var/vcap/jobs/control-node/config/id_rsa
+
 if [ ! -f /var/vcap/data/tmp/host_aliases_done ]; then
 echo "Adding aliases to /etc/hosts for node n1 to n5"
 <% p('db_nodes', []).each_with_index do |node_ip,index| %>
-echo "<%= node_ip %> n<%= index %>" >> /etc/hosts
+echo "<%= node_ip %> n<%= index+1 %>" >> /etc/hosts
 <% end %>
 touch /var/vcap/data/tmp/host_aliases_done
 else
 echo "Aliases already set, skipping editing /etc/hosts"
 fi
+
+echo "Adding host keys to servers n1 to n5"
+rm -rf /root/.ssh/known_hosts
+mkdir -p /root/.ssh/
+for i in `seq 1 5`;
+do
+ssh-keyscan -t rsa n${i} >> /root/.ssh/known_hosts
+done
