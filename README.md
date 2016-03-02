@@ -4,6 +4,12 @@
 
 This is a Bosh release for [Jepsen](jepsen.io), the distributed system test library written by [Kyle Kingsbury](https://github.com/aphyr).
 
+## Prerequisites
+```bash
+$ bosh upload release jepsen-release
+$ bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=26
+```
+
 ## TODO: automate this with Bosh, currently done manually
 
 ## Current test flow

@@ -4,6 +4,8 @@ director_uuid: 44586d7c-bcce-4f5f-ae80-42bb8a1ed08b
 releases:
 - name: jepsen
   version: latest
+- name: cf-mysql
+  version: latest
 
 compilation:
   workers: 3
@@ -48,6 +50,7 @@ jobs:
   instances: 5
   templates:
     - {name: db-node, release: jepsen}
+    - {name: db-node, release: cf-mysql}
   resource_pool: common-resource-pool
   networks:
     - name: default
