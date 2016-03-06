@@ -6,3 +6,5 @@ templates:
   pre-start.erb: bin/pre-start
 
 packages: []
+
+properties: {}

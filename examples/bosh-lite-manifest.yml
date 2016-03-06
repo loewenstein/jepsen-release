@@ -50,7 +50,7 @@ jobs:
   instances: 5
   templates:
     - {name: db-node, release: jepsen}
-    - {name: db-node, release: cf-mysql}
+    - {name: mysql, release: cf-mysql}
   resource_pool: common-resource-pool
   networks:
     - name: default
@@ -131,3 +131,35 @@ properties:
     qZujizKClmukPi/xs3IiKqTKISddIS3s+HdSmleO1C3xT9/hRGNc0Wl+UrVFoj6m
     FfWyjgwU/CdK5RB4/VijmuhR8WjosdSo84YoCe16DFah9doVU0TUcFpeZKI9
     -----END RSA PRIVATE KEY-----
+# now properties for cf-mysql
+# Standalone deployments have no CF, but these fields are required
+# for all deployments.
+  admin_username: UNUSED_VALUE
+  admin_password: UNUSED_VALUE
+  nats:
+    machines: []
+    user: UNUSED_VALUE
+    password: UNUSED_VALUE
+    port: 0
+  system_domain: UNUSED_VALUE
+  app_domains: [UNUSED_VALUE]
+  domain: UNUSED_VALUE
+  standalone: true
+  mysql:
+    admin_password: jepsen #The admin password for the MySQL server process
+    roadmin_password: jepsen
+    bootstrap_endpoint:
+      username: jepsen
+      password: jepsen
+  acceptance_tests:
+    standalone_tests_only: true
+  broker:
+    auth_username: UNUSED_VALUE
+    auth_password: UNUSED_VALUE
+    cookie_secret: UNUSED_VALUE
+    dashboard_secret: UNUSED_VALUE
+    plans:
+    - name: UNUSED_VALUE
+      id: UNUSED_VALUE
+      description: UNUSED_VALUE
+      max_storage_mb: 100
