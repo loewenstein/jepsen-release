@@ -60,6 +60,8 @@ jobs:
         - 10.244.0.5
         - 10.244.0.6
         - 10.244.0.7
+  properties:
+    network_name: default
 - name: control-node
   instances: 1
   templates:
@@ -147,6 +149,12 @@ properties:
     domain: UNUSED_VALUE
     standalone: true
     mysql:
+      cluster_ips:
+        - 10.244.0.3
+        - 10.244.0.4
+        - 10.244.0.5
+        - 10.244.0.6
+        - 10.244.0.7
       database_startup_timeout: 600
       admin_password: jepsen #The admin password for the MySQL server process
       roadmin_password: jepsen
