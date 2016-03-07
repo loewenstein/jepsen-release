@@ -7,4 +7,6 @@ templates:
 
 packages: []
 
-properties: {}
+properties:
+  public_key:
+    description: "The public key allowed to access the machine"
