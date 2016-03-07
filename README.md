@@ -2,7 +2,7 @@
 
 **Work in progress**
 
-This is a Bosh release for [Jepsen](jepsen.io), the distributed system test library written by [Kyle Kingsbury](https://github.com/aphyr).
+This is a Bosh release for [Jepsen](http://jepsen.io), the distributed system test library written by [Kyle Kingsbury](https://github.com/aphyr).
 
 ## Prerequisites
 ```bash
