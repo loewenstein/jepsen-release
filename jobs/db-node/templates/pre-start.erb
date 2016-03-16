@@ -5,3 +5,6 @@ cat /var/vcap/jobs/db-node/config/id_rsa.pub > /home/vcap/.ssh/authorized_keys
 chown -R vcap:vcap /home/vcap/.ssh
 chmod 750 /home/vcap/.ssh
 chmod 600 /home/vcap/.ssh/authorized_keys
+lines=$(sudo wc -l /etc/sudoers)
+insert_at=$(expr $lines - 1)
+sudo sed -i "${insert_at}ivcap ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
